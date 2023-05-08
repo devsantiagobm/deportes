@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="layout/links :: links"></head>
+    <head>
+        <link rel="stylesheet" th:href="@{css/deportes/deportes.css}"/>
+    </head>
+
+
+    <body>
+        <header th:insert="layout/header::header"></header>
+        <main class="deportes show-in">
+            <a th:href="@{/deportes/agregar}" class="deportes__agregar up-in-hover">
+                +
+            </a>
+
+            <section>
+                <h1 class="deportes__titulo">Lista de deportes</h1>
+                <div class="deportes__grid">
+
+                    <div th:each="deporte : ${deportes}" class="deportes__elemento elemento" th:href="@{deportes/id(id=${deporte.nombre})}"th:id='${deporte.id}' >
+                        <img class="elemento__imagen" src="https://images.pexels.com/photos/5836917/pexels-photo-5836917.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"/>
+                        <div class="elemento__caja">
+
+                            <div class='elemento__botones'>
+                                <a th:href="@{deportes/editar/{id}(id=${deporte.id})}" class='elemento__link'>
+                                    <img th:src="@{images/edit.png}" alt="alt" class='elemento__icono'/>
+                                </a>
+                                <a th:href="@{deportes/eliminar/{id}(id=${deporte.id})}" class='elemento__link'>
+                                    <img th:src="@{images/delete.png}" alt="alt" class='elemento__icono'/>
+                                </a>
+
+                            </div>
+
+                            <div class='elemento__informacion'>
+                                <span class="elemento__titulo" th:text="${deporte.nombre}"></span>
+                                <p class="elemento__descripcion" th:text="${deporte.descripcion}"></p>
+                            </div>
+
+
+                        </div>
+                    </div> 
+
+                </div> 
+            </section>
+        </main>
+    </body>
+</html>

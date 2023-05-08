@@ -1,0 +1,23 @@
+
+<header th:fragment="header" class="header">
+    <picture class="header__picture">
+        <img th:src="@{~/images/logo.png/}" alt="alt" class="header__logo"/>
+        SportsWiki
+    </picture>
+
+
+    <nav class="header__nav">
+        <ul class="header__list">
+            <li>
+                <a th:href="@{/}" class="header__link up-in-hover">Home</a>
+            </li>
+            <li>
+                <a th:href="@{/deportes}" class="header__link up-in-hover">Deportes</a>
+            </li>
+            <li>
+                <a th:href="@{/contacto}" class="header__link up-in-hover">Contactenos</a>
+            </li>
+        </ul>
+
+    </nav>
+</header>

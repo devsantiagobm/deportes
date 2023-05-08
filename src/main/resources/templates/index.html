@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head th:insert="layout/links::links"></head>
+    <head>
+        <link rel="stylesheet" th:href="@{css/plantillas/carrusel.css}"/>
+        <link rel="stylesheet" th:href="@{css/index.css}"/>
+    </head>
+
+
+    <body>
+        <header th:replace="layout/header::header" > </header>
+
+        <main class="home show-in">
+            <h1 class="home__title">
+                <span class="home__title--bold">SportsWiki. </span>
+                Conoce toda la información de los deportes más relevantes del mundo</h1>
+            <div th:insert="plantillas/carrusel::carrusel"></div>
+        </main>
+
+
+    </body>
+</html>

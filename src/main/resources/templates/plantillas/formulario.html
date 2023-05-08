@@ -1,0 +1,24 @@
+<form th:fragment="formulario (action, titulo, deporte)" 
+      th:action="${action}" method="POST" class="form" th:object="${deporte}">
+    <h1 th:text='${titulo}' class='form__titulo'></h1>
+    <div class="form__caja">
+        <label class="form__label" for="nombre">Nombre</label>
+        <input class="form__input" placeholder="Baloncesto" 
+               id="nombre" name="nombre" required th:field="*{nombre}" />
+    </div> 
+
+    <div class="form__caja">
+        <label class="form__label" for="descripcion">Descripción</label>
+        <textarea class="form__input" placeholder="Baloncesto" id="descripcion" 
+                  name="descripcion" required th:field="*{descripcion}"></textarea>
+    </div> 
+
+    <label class='form__imagen' for='imagen'>
+        Seleccionar imagen
+        <input type='file' id='imagen' accept="image/*" hidden/>
+    </label>
+
+    <input type="text" name='estado' hidden th:field="*{estado}" th:value="${deporte.estado}"/>
+
+    <input type='submit' value='Agregar' class="form__submit up-in-hover"/>   
+</form>
