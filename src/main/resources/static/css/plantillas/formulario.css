@@ -4,6 +4,7 @@
     padding: 32px 24px ;
     border-radius: 16px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.1) 0px 30px 60px -30px;
+    margin: 0 0 48px;
 }
 
 .form__titulo{
@@ -24,7 +25,7 @@
     background-color: var(--main-color);
     padding: 12px 16px;
     border-radius: 8px;
-    min-height: 42px;
+    min-height: 45px;
     height: 42px;
 }
 
@@ -41,19 +42,38 @@
     cursor: pointer;
     display: grid;
     place-items: center;
-    margin: 16px 0 0;
+    margin: 16px 0;
     border-radius: 8px;
 }
 
 
 .form__submit{
-    margin: 24px 0 0;
+    margin: 0 0 0;
     width: 100%;
     display: grid;
     place-items: center;
     background-color: var(--main-color);
     padding: 12px 16px;
     border-radius: 8px;
+    margin: 16px 0 0;
 
     cursor: pointer;
+}
+
+
+.form__imagen-subida{
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+}
+
+
+.form__input--contacto,
+.form__submit--contacto{
+    background-color: var(--main-color-light);
+}
+
+.form--contacto{
+    background-color: var( --main-color);
+    box-shadow: none;
 }

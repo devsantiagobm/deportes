@@ -10,23 +10,22 @@
     <body>
         <header th:insert="layout/header::header"></header>
         <main class="deportes show-in">
-            <a th:href="@{/deportes/agregar}" class="deportes__agregar up-in-hover">
-                +
-            </a>
+            <a th:href="@{/deportes/agregar}" class="deportes__agregar up-in-hover">+</a>
 
             <section>
                 <h1 class="deportes__titulo">Lista de deportes</h1>
-                <div class="deportes__grid">
+                <div th:class="'deportes__grid ' + ${deportesLongitud < 4 ? 'deportes--contraido' : ''}">
 
                     <div th:each="deporte : ${deportes}" class="deportes__elemento elemento" th:href="@{deportes/id(id=${deporte.nombre})}"th:id='${deporte.id}' >
-                        <img class="elemento__imagen" src="https://images.pexels.com/photos/5836917/pexels-photo-5836917.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"/>
+                        <img class="elemento__imagen" th:src="${deporte.imagen}"/>
                         <div class="elemento__caja">
+                            <a th:href="@{deportes/{id}(id=${deporte.id})}" class='elemento__link'></a>
 
                             <div class='elemento__botones'>
-                                <a th:href="@{deportes/editar/{id}(id=${deporte.id})}" class='elemento__link'>
+                                <a th:href="@{deportes/editar/{id}(id=${deporte.id})}" class='elemento__button'>
                                     <img th:src="@{images/edit.png}" alt="alt" class='elemento__icono'/>
                                 </a>
-                                <a th:href="@{deportes/eliminar/{id}(id=${deporte.id})}" class='elemento__link'>
+                                <a th:href="@{deportes/eliminar/{id}(id=${deporte.id})}" class='elemento__button'>
                                     <img th:src="@{images/delete.png}" alt="alt" class='elemento__icono'/>
                                 </a>
 
@@ -35,6 +34,7 @@
                             <div class='elemento__informacion'>
                                 <span class="elemento__titulo" th:text="${deporte.nombre}"></span>
                                 <p class="elemento__descripcion" th:text="${deporte.descripcion}"></p>
+
                             </div>
 
 

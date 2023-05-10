@@ -23,6 +23,18 @@ public class Deporte {
 
     @Column(name = "estado", nullable = false)
     private String estado;
+    
+    @Column(name = "imagen", nullable = false)
+    private String imagen;
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+    
 
     public long getId() {
         return id;
@@ -58,7 +70,9 @@ public class Deporte {
 
     @Override
     public String toString() {
-        return "Deporte{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", estado=" + estado + '}';
+        return "Deporte{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", estado=" + estado + ", imagen=" + imagen + '}';
     }
+
+
     
 }

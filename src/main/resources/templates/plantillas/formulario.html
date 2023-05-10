@@ -1,6 +1,6 @@
 <form th:fragment="formulario (action, titulo, deporte)" 
-      th:action="${action}" method="POST" class="form" th:object="${deporte}">
-    <h1 th:text='${titulo}' class='form__titulo'></h1>
+      th:action="${action}" method="POST" class="form" th:object="${deporte}" enctype="multipart/form-data">
+    <h1 th:text='${titulo} + deporte' class='form__titulo'></h1>
     <div class="form__caja">
         <label class="form__label" for="nombre">Nombre</label>
         <input class="form__input" placeholder="Baloncesto" 
@@ -9,16 +9,48 @@
 
     <div class="form__caja">
         <label class="form__label" for="descripcion">Descripción</label>
-        <textarea class="form__input" placeholder="Baloncesto" id="descripcion" 
+        <textarea class="form__input" placeholder="Deporte en equipo" id="descripcion" 
                   name="descripcion" required th:field="*{descripcion}"></textarea>
     </div> 
 
     <label class='form__imagen' for='imagen'>
         Seleccionar imagen
-        <input type='file' id='imagen' accept="image/*" hidden/>
+        <input type='file' id='imagen' accept="image/*" hidden name="archivo" class="form__input--imagen" value='holka'/>
     </label>
 
-    <input type="text" name='estado' hidden th:field="*{estado}" th:value="${deporte.estado}"/>
 
-    <input type='submit' value='Agregar' class="form__submit up-in-hover"/>   
+    <input type="text" name='estado' hidden th:field="*{estado}" th:value="${deporte.estado}"/>
+    <input type='text' hidden th:field="*{imagen}" name="imagen"/>
+
+    <img th:src="${deporte.imagen != null ? '/' + deporte.imagen : ''}" class="form__imagen-subida">
+
+    <input type='submit' th:value='${titulo}' class="form__submit up-in-hover"/>   
+</form>
+
+<!--
+  Para subir un archivo se debe usar un input de tipo file. Pero para que el controlador pueda leer el contenido de lo que se subió se debe usar un input
+  de tipo text. Luego al atributo de imagen del objeto se le cambia el valor en el controlador con la url que se crea
+  
+-->
+
+<form th:fragment="contacto" class="form form--contacto">
+    <h1 th:text='Contactenos' class='form__titulo'></h1>
+    <div class="form__caja">
+        <label class="form__label" for="nombre">Nombre</label>
+        <input class="form__input form__input--contacto" placeholder="Michael Jordan" id="nombre" name="nombre" required />
+    </div> 
+
+    <div class="form__caja">
+        <label class="form__label" for="correo">Correo</label>
+        <input class="form__input form__input--contacto" placeholder="michael.23@gmail.com" id="correo" name="correo" required />
+    </div> 
+
+
+
+    <div class="form__caja">
+        <label class="form__label" for="descripcion">Mensaje</label>
+        <textarea class="form__input form__input--contacto " placeholder="¡Quiero trabajar con ustedes!" id="descripcion" name="descripcion" required></textarea>
+    </div> 
+
+    <input type='submit' value='Enviar' class="form__submit form__submit--contacto up-in-hover"/>   
 </form>

@@ -12,8 +12,7 @@
         <header th:insert="layout/header::header"></header>
         <main class="deportes show-in">
             <form th:replace="plantillas/formulario :: formulario 
-                  (action=@{/deportes/agregar}, titulo='Agregar ', deporte=${deporte})"></form>
-            
+                  (action=@{/deportes/editar/{id} (id=${deporte.id})}, titulo='Editar ', deporte=${deporte})"></form>            
         </main>
     </body>
 </html>
