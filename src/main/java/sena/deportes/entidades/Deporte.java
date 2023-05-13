@@ -15,16 +15,16 @@ public class Deporte {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "nombre", nullable = false)
+    @Column(name = "nombre", nullable = false, length = 255)
     private String nombre;
 
-    @Column(name = "descripcion", nullable = false)
+    @Column(name = "descripcion", nullable = false, length = 1000)
     private String descripcion;
 
-    @Column(name = "estado", nullable = false)
+    @Column(name = "estado", nullable = false, length = 8)
     private String estado;
     
-    @Column(name = "imagen", nullable = false)
+    @Column(name = "imagen", nullable = false, length = 255)
     private String imagen;
 
     public String getImagen() {

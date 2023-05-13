@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 import sena.deportes.repositorios.DeporteRepositorio;
 import sena.deportes.entidades.Deporte;
 import java.util.List;
+import java.util.Objects;
+import org.springframework.web.multipart.MultipartFile;
+import sena.deportes.helpers.Helpers;
 
 @Service
 public class DeporteServicio {
@@ -19,15 +22,52 @@ public class DeporteServicio {
     public void agregarDeporte(Deporte deporte) {
         repositorio.save(deporte);
     }
-    
-    
-    public Deporte buscarPorId(Long id){
-        return repositorio.findById(id).get();
+
+    public Deporte buscarPorId(Long id) {
+        var deporteEncontrado = repositorio.findById(id);
+
+        if (deporteEncontrado.isEmpty()) {
+            return new Deporte();
+        }
+
+        return deporteEncontrado.get();
     }
 
     public void eliminarDeporte(Long id) {
         Deporte deporte = buscarPorId(id);
+
+        if (deporteVacio(deporte)) {
+            return;
+        }
+
         deporte.setEstado("inactivo");
         repositorio.save(deporte);
+    }
+
+    public void editarDeporte(Deporte deporte, Long id, MultipartFile archivo) {
+        Deporte deporteEditado = buscarPorId(id);
+
+        if (deporteVacio(deporteEditado)) {
+            return;
+        }
+
+        deporteEditado.setId(id);
+        deporteEditado.setNombre(deporte.getNombre());
+        deporteEditado.setDescripcion(deporte.getDescripcion());
+        deporteEditado.setEstado("activo");
+
+        if (!archivo.isEmpty()) {
+            deporteEditado.setImagen(Helpers.subirImagen(archivo));
+        }
+
+        agregarDeporte(deporteEditado);
+    }
+
+    public boolean deporteVacio(Deporte deporte) {
+        if (deporte.getId() == 0 && deporte.getNombre() == null && deporte.getDescripcion() == null && deporte.getEstado() == null && deporte.getImagen() == null) {
+            return true;
+        }
+        
+        return false;
     }
 }
