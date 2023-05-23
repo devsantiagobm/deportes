@@ -3,8 +3,6 @@
 
     <head th:insert="layout/links::links"></head>
     <head>
-        <link rel="stylesheet" th:href="@{css/plantillas/carrusel.css}"/>
-        <link rel="stylesheet" th:href="@{css/index.css}"/>
         <script th:src="@{js/map.js}" defer></script>
     </head>
 
@@ -16,7 +14,7 @@
             <h1 class="home__title">
                 <span class="home__title--bold">SportsWiki. </span>
                 Conoce toda la información de los deportes más relevantes del mundo</h1>
-            <div th:insert="plantillas/carrusel::carrusel"></div>
+            <div th:insert="layout/carrusel::carrusel"></div>
         </main>
 
 

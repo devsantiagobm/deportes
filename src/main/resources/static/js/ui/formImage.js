@@ -11,8 +11,7 @@ import $ from "../$.js";
 
     function mostrarImagen(imagen) {
         const src = URL.createObjectURL(imagen);
-        const imagenNodo = $(".form__imagen-subida");
-        imagenNodo.src = src;
+        $(".form__imagen-subida").src = src;
     }
 
 })()
